@@ -6,7 +6,7 @@ var browserify = require('browserify');
 gulp.task('browserify', function() {
   browserify('./src/index.js').bundle()
       .pipe(source('script.js'))
-      .pipe(gulp.dest('./build'));
+      .pipe(gulp.dest('./public'));
 });
 
 gulp.task('watch', function() {
