@@ -1,0 +1,56 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  font-family: 'Helvetica Neue';
+}
+
+header {
+  display: flex;
+  height: 5rem;
+  line-height: 5rem;
+  margin-top: 1rem;
+}
+
+header, h2 {
+  width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2 {
+  margin: 1rem auto;
+  font-size: 1.5rem;
+}
+
+nav {
+  align-self: flex-start;
+}
+
+aside {
+  margin-left: auto;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+i {
+  color: black;
+  text-shadow: 1px 1px 1px #ccc;
+}
+
+i:active {
+  text-shadow: none;
+}
+
+a {
+  font-size: 3rem;
+  margin: 0 .2rem;
+}
+
+article {
+  display: flex;
+  justify-content: center;
+}

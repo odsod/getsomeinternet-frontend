@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>messapp</title>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="minus" data-bind="click: onMinusClick" href="#"><i class="fa fa-minus-circle"></i></a>
+    <a class="next" data-bind="click: onNextClick" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+    <a class="plus" data-bind="click: onPlusClick" href="#"><i class="fa fa-plus-circle"></i></a>
+  </nav>
+  <aside data-bind="text: score"></aside>
+</header>
+
+<h2 data-bind="visible: title, text: title"></h2>
+
+<article class="youtube" data-bind="if: isYouTubeItem, visible: isYouTubeItem">
+  <iframe data-bind="attr: {src: youTubeUrl}"
+          width="560" height="315" frameborder="0" allowfullscreen>
+  </iframe>
+</article>
+
+<article class="soundcloud" data-bind="if: isSoundCloudItem, visible: isSoundCloudItem">
+  <iframe data-bind="attr: {src: soundCloudUrl}"
+          width="560" height="315" scrolling="no" frameborder="no"></iframe>
+</article>
+
+<article class="image" data-bind="if: isImageItem, visible: isImageItem">
+  <img data-bind="attr: {src: data}">
+</article>
+
+<script src="build/script.js"></script>
+</body>
+</html>
