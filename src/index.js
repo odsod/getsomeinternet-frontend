@@ -79,13 +79,13 @@ var nextItem = function() {
   if (items.length < 5) {
     console.log('low on items... want more!')
     request('/api/items', function(err, res) {
-      if (err || res.xhr.status !== 200) {
+      if (err || res.xhr.status < 200 || res.xhr.status >= 300) {
         console.log('epic fail.. adding test items');
         items = items.concat(testItems);
         return;
       }
-      console.log('mmm.. got items', res);
-      items = items.concat(res);
+      console.log('mmm.. got items', res.body);
+      items = items.concat(res.body);
     });
   }
 };
