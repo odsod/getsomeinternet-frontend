@@ -104,11 +104,7 @@ vm.onMinusClick = voteMinusAndNextItem;
 
 ko.applyBindings(vm);
 
-var YT = require('./youtube-api');
-
-console.log('before youtube ready');
-
-YT.onYouTubeIframeAPIReady(function() {
+require('./youtube-api').then(function(YT) {
   var playerNode = document.createElement('div');
   document.body.appendChild(playerNode);
   var player = new YT.Player(playerNode, {

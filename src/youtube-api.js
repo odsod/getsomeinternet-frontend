@@ -1,20 +1,12 @@
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
+var Q = require('q');
+var loadScript = require('load-script');
 
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+loadScript('https://www.youtube.com/iframe_api');
 
-var readyCallback = null;
-
-exports.onYouTubeIframeAPIReady = function(cb) {
-  readyCallback = cb;
-};
-
-console.log('assigning callback');
+var deferredApi = Q.defer();
 
 window.onYouTubeIframeAPIReady = function() {
-  exports.Player = window.YT.Player;
-  if (readyCallback) {
-    readyCallback();
-  }
+  deferredApi.resolve(window.YT);
 }
+
+module.exports = deferredApi.promise;
