@@ -117,3 +117,19 @@ require('./youtube-api').then(function(YT) {
     }
   })
 });
+
+require('./soundcloud-api').then(function(SC) {
+  var playerNode = document.createElement('iframe');
+  playerNode.src = 'https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true';
+  playerNode.width = '500px';
+  document.body.appendChild(playerNode);
+  var player = new SC.Widget(playerNode);
+  widget.bind(SC.Widget.Events.READY, function() {
+    // load new widget
+    widget.bind(SC.Widget.Events.FINISH, function() {
+      widget.load('http://api.soundcloud.com/tracks/13692671', {
+        show_artwork: false
+      });
+    });
+  });
+});
