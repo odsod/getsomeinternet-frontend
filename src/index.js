@@ -103,3 +103,21 @@ vm.onPlusClick = votePlusAndNextItem;
 vm.onMinusClick = voteMinusAndNextItem;
 
 ko.applyBindings(vm);
+
+var YT = require('./youtube-api');
+
+console.log('before youtube ready');
+
+YT.onYouTubeIframeAPIReady(function() {
+  var playerNode = document.createElement('div');
+  document.body.appendChild(playerNode);
+  var player = new YT.Player(playerNode, {
+    width: 560,
+    height: 315,
+    videoId: 'M7lc1UVf-VE',
+    events: {
+      'onReady': function() { console.log('onReady'); },
+      'onStateChange': function() { console.log('onStateChange'); }
+    }
+  })
+});
