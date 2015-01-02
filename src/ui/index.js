@@ -31,7 +31,6 @@ window.addEventListener('keydown', function(e) {
 ko.applyBindings(ui);
 
 var show = function(item) {
-  console.log('ui show', item);
   ui.score(item.score);
   ui.title(item.title);
 };

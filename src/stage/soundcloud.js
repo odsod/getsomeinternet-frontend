@@ -1,34 +1,38 @@
-//vm.soundCloudUrl = ko.computed(function() {
-  //return vm.isSoundCloudItem() && 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + vm.data() + '&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true';
-//});
+var Q = require('q');
 
-//require('./soundcloud-api').then(function(SC) {
-  //var playerNode = document.createElement('iframe');
-  //playerNode.src = 'https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true';
-  //playerNode.width = '500px';
-  //document.body.appendChild(playerNode);
-  //var player = new SC.Widget(playerNode);
-  //widget.bind(SC.Widget.Events.READY, function() {
-    //// load new widget
-    //widget.bind(SC.Widget.Events.FINISH, function() {
-      //widget.load('http://api.soundcloud.com/tracks/13692671', {
-        //show_artwork: false
-      //});
-    //});
-  //});
-//});
+var playerContainer = document.createElement('div');
+playerContainer.className = 'soundcloud-player hidden';
+document.getElementById('stage').appendChild(playerContainer);
 
-var prepare = function() {
+var deferredPlayer = require('../api/soundcloud').then(function(SC) {
+  var playerNode = document.createElement('iframe');
+  playerNode.src = 'https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true';
+  playerNode.width = '500px';
+  playerContainer.appendChild(playerNode);
+  var widget = new SC.Widget(playerNode);
+  var deferred = Q.defer();
+  widget.bind(SC.Widget.Events.READY, function() {
+    deferred.resolve(widget);
+  });
+  return deferred.promise;
+});
+
+exports.prepare = function(item) {
 };
 
-var show = function() {
+exports.show = function(item) {
+  deferredPlayer.then(function(player) {
+    player.load('http://api.soundcloud.com/tracks/' + item.data, {
+      show_artwork: true,
+      auto_play: true
+    });
+  });
+  playerContainer.className = 'soundcloud-player';
 };
 
-var hide = function() {
-};
-
-module.exports = {
-  prepare: prepare,
-  show: show,
-  hide: hide
+exports.hide = function(item, nextItem) {
+  deferredPlayer.then(function(player) {
+    player.pause();
+  });
+  playerContainer.className = 'soundcloud-player hidden';
 };

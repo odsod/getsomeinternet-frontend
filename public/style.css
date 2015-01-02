@@ -106,7 +106,7 @@ main {
   content: '+';
 }
 
-.youtube-player.hidden {
+.hidden {
   /* display: none causes flash errors in FF */
   position: absolute;
   left: -9999px;

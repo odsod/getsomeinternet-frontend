@@ -5,7 +5,6 @@ var stage = require('./stage');
 var queuedItems = [];
 
 var addItemsToQueue = function(items) {
-  console.log('add items to queue', items);
   items.forEach(stage.prepare);
   queuedItems = queuedItems.concat(items);
 };
