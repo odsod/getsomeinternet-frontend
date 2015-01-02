@@ -57,6 +57,13 @@ var testItems = [
   {type: 'gif', data: 'http://media.giphy.com/media/1Anamuv8XEimQ/giphy.gif', score: 11}
 ];
 
+var stageManagers = {
+  image: require('./stage-manager/image'),
+  gif: require('./stage-manager/image'),
+  youtube: require('./stage-manager/youtube'),
+  soundcloud: require('./stage-manager/soundcloud'),
+};
+
 var items = testItems.slice();
 
 var currItem = 0;
