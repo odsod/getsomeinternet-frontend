@@ -1,5 +1,5 @@
 var stageTypes = {
-  image: require('./image'),
+  img: require('./image'),
   gif: require('./image'),
   youtube: require('./youtube'),
   soundcloud: require('./soundcloud')
@@ -8,6 +8,7 @@ var stageTypes = {
 var currShownItem = null;
 
 var prepare = function(item) {
+  console.log('preparing', item);
   stageTypes[item.type].prepare(item);
 };
 

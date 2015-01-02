@@ -12,14 +12,26 @@ var testItems = [
   //{type: 'gif', data: 'https://s3.amazonaws.com/giphymedia/media/GzjFAsz1DjGog/giphy.gif', score: 15}
 ];
 
+var lastSort = null;
+
 exports.loadMoreItems = function() {
   var deferredItems = Q.defer();
-  request('/api/items', function(err, res) {
+  var uri;
+  if (lastSort) {
+    uri = '/api/items?first=' + lastSort;
+  } else {
+    uri = '/api/items';
+  }
+  console.log('requesting', uri);
+  request(uri, function(err, res) {
     if (err || res.xhr.status < 200 || res.xhr.status >= 300) {
       console.log('failed to get items.. using test items instead');
       deferredItems.resolve(testItems);
     } else {
       console.log('got items from backend', res.body);
+      res.body.shift();
+      lastSort = res.body[res.body.length - 1]._sort;
+      console.log('lastSort', lastSort);
       deferredItems.resolve(res.body);
     }
   });

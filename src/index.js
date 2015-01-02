@@ -5,11 +5,14 @@ var stage = require('./stage');
 var queuedItems = [];
 
 var addItemsToQueue = function(items) {
+  console.log('adding items to queue', items);
   items.forEach(stage.prepare);
   queuedItems = queuedItems.concat(items);
+  console.log('new queue', queuedItems);
 };
 
 var show = function(item) {
+  console.log('showing', item);
   ui.show(item);
   stage.show(item);
 };
@@ -27,6 +30,7 @@ ui.on('downvote', showNextItem);
 
 // initialize
 api.loadMoreItems().then(function(items) {
+  console.log('initial items', items);
   addItemsToQueue(items);
   showNextItem();
 });
