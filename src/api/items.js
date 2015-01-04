@@ -17,23 +17,33 @@ var lastSort = null;
 exports.loadMoreItems = function() {
   var deferredItems = Q.defer();
   var uri;
+
   if (lastSort) {
     uri = '/api/items?first=' + lastSort;
   } else {
     uri = '/api/items';
   }
+  
   console.log('requesting', uri);
   request(uri, function(err, res) {
     if (err || res.xhr.status < 200 || res.xhr.status >= 300) {
       console.log('failed to get items.. using test items instead');
-      deferredItems.resolve(testItems);
-    } else {
-      console.log('got items from backend', res.body);
-      res.body.shift();
-      lastSort = res.body[res.body.length - 1]._sort;
-      console.log('lastSort', lastSort);
-      deferredItems.resolve(res.body);
+      return deferredItems.resolve(testItems);
+    } 
+
+    if (!Array.isArray(res.body)) {
+      console.log('failed to get array from server.');
+      return deferredItems.resolve(testItems);
     }
+   
+    if (res.body && res.body.length < 1) {
+      return deferredItems.resolve(testItems);
+    }
+     
+    console.log('got items from backend', res.body);
+    lastSort = res.body[res.body.length - 1]._sort;
+    console.log('lastSort', lastSort);
+    deferredItems.resolve(res.body);
   });
   return deferredItems.promise;
 };
