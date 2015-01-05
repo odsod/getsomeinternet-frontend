@@ -7,6 +7,6 @@ var deferredApi = Q.defer();
 
 window.onYouTubeIframeAPIReady = function() {
   deferredApi.resolve(window.YT);
-}
+};
 
 module.exports = deferredApi.promise;

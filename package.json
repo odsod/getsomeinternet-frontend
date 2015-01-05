@@ -11,6 +11,8 @@
   "devDependencies": {
     "browserify": "^8.0.2",
     "gulp": "^3.8.10",
+    "gulp-jscs": "^1.4.0",
+    "gulp-jshint": "^1.9.0",
     "vinyl-source-stream": "^1.0.0"
   },
   "dependencies": {

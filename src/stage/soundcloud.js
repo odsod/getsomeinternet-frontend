@@ -4,9 +4,12 @@ var playerContainer = document.createElement('div');
 playerContainer.className = 'soundcloud-player hidden';
 document.getElementById('stage').appendChild(playerContainer);
 
+var PLACEHOLDER_SONG = 'http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538';
+var WIDGET_URL = 'https://w.soundcloud.com/player/?url=' + PLACEHOLDER_SONG;
+
 var deferredPlayer = require('../api/soundcloud').then(function(SC) {
   var playerNode = document.createElement('iframe');
-  playerNode.src = 'https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true';
+  playerNode.src = WIDGET_URL;
   playerNode.width = '500px';
   playerContainer.appendChild(playerNode);
   var widget = new SC.Widget(playerNode);
