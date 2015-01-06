@@ -62,7 +62,7 @@ a {
   font-family: monospace;
   display: -webkit-inline-box;
   font-size: 3rem;
-  padding-right : 13px;
+  padding-right : 1.5rem;
 }
 
 main {
@@ -72,7 +72,8 @@ main {
 }
 
 .addjective {
-  font-size: 1rem;
+  font-size: 1.3rem;
+  font-weight: 100;
 }
 
 .negative::before {
