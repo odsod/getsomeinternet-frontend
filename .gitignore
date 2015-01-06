@@ -1,2 +1,5 @@
 public/script.js
 node_modules
+
+*.swp
+*.swo
