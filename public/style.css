@@ -54,7 +54,7 @@ nav {
   z-index: 1;
 }
 
-a {
+nav > * {
   text-decoration: none;
   color: white;
   font-weight: bold;
@@ -66,9 +66,25 @@ a {
 }
 
 main {
-  margin-top: 5rem;
+  margin-top: 11rem;
   display: flex;
   justify-content: center;
+}
+
+.wrapper {
+  position : fixed;
+  width : 100%;
+  background-color : rgba(229, 230, 206, 0);
+  top : 0px;
+}
+
+.add:before {
+  content : 'add new content';
+}
+
+.add {
+  position : absolute;
+  right : 10rem; 
 }
 
 .addjective {
