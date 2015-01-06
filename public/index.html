@@ -6,17 +6,26 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
+<div class='wrapper'>
 <header>
   <div class="score" data-bind="text: score"></div>
   <h1 data-bind="visible: title, text: title"></h1>
 </header>
 
 <nav>
-  <a class="upvote" data-bind="click: onUpvoteClick" href="#"></a>
-  <a class="next" data-bind="click: onNextClick" href="#"></a>
+  <a class="negative addjective" data-bind="click: onDownvoteClick" href="#"></a>
+  <a class="negative addjective" data-bind="click: onDownvoteClick" href="#"></a>
+  <a class="negative addjective" data-bind="click: onDownvoteClick" href="#"></a>
+
   <a class="downvote" data-bind="click: onDownvoteClick" href="#"></a>
+  <a class="next" data-bind="click: onNextClick" href="#"></a>
+  <a class="upvote" data-bind="click: onUpvoteClick" href="#"></a>
+
+  <a class="positive addjective" data-bind="click: onDownvoteClick" href="#"></a>
+  <a class="positive addjective" data-bind="click: onDownvoteClick" href="#"></a>
+  <a class="positive addjective" data-bind="click: onDownvoteClick" href="#"></a>
 </nav>
+</div>
 
 <main id="stage"></main>
 
