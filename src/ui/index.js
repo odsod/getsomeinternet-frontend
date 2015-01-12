@@ -1,41 +1,50 @@
-var ko = require('knockout');
+var nav = require('./nav');
+var header = require('./header');
+var stage = require('./stage');
 
-var EventEmitter = require('events').EventEmitter;
+var navController = nav.create({
+  upvoteButton: document.getElementById('upvote'),
+  downvoteButton: document.getElementById('downvote'),
+  nextButton: document.getElementById('next')
+});
 
-var emitter = new EventEmitter();
+var headerController = header.create({
+  score: document.getElementById('score'),
+  title: document.getElementById('title')
+});
 
-var ui = {};
+var stageController = stage.create({
+  imageContainer: document.getElementById('image-container'),
+  youtubeContainer: document.getElementById('youtube-container'),
+  soundcloudContainer: document.getElementById('soundcloud-container')
+});
 
-ui.score = ko.observable(null);
-ui.title = ko.observable(null);
-
-ui.onNextClick = function() {
-  emitter.emit('next');
+var showItem = function(item) {
+  headerController.showItem(item);
+  stageController.showItem(item);
 };
 
-ui.onUpvoteClick = function() {
-  emitter.emit('upvote');
-};
-
-ui.onDownvoteClick = function() {
-  emitter.emit('downvote');
+var on = function(eventType, cb) {
+  navController.on(eventType, cb);
 };
 
 window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 39) { // left key
-    emitter.emit('next');
-    e.preventDefault();
+  switch (e.keyCode) {
+    case 39: // right
+      navController.next();
+      e.preventDefault();
+      break;
+    case 38:
+      navController.setSelectedVote('upvote');
+      e.preventDefault();
+      break;
+    case 37:
+      navController.setSelectedVote('downvote');
+      e.preventDefault();
+      break;
   }
 });
 
-ko.applyBindings(ui);
-
-var show = function(item) {
-  ui.score(item.score);
-  ui.title(item.title);
-};
-
-module.exports = {
-  show: show,
-  on: emitter.on.bind(emitter)
-};
+exports.on = on;
+exports.showItem = showItem;
+exports.preloadItem = stageController.preloadItem;

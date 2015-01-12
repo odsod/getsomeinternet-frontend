@@ -1,6 +1,6 @@
 html {
   font-size: 100%;
-  font-family: 'Helvetica Neue';
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 html, body {
@@ -14,7 +14,7 @@ h1 {
   padding: 0;
 }
 
-.image-container {
+#image-container {
   max-width: 80%;
 }
 
@@ -35,8 +35,8 @@ header > * {
   margin-left: 1rem;
   display: inline-block;
   font-size: 1rem;
-  font-weight: normal;
   background: black;
+  font-weight: 300;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
@@ -69,48 +69,53 @@ main {
   justify-content: center;
 }
 
-.downvote {
+nav > * {
+  font-weight: 300;
+}
+
+#downvote {
   color: #ffdddd;
 }
 
-.downvote:hover {
+#downvote:hover {
   color: #ff9999;
 }
 
-.downvote:active {
+#downvote:active {
   color: #ff5555;
 }
 
-.downvote::before {
+#downvote::before {
   content: '-';
 }
 
-.next {
+#next {
   color: #eee;
   font-size: 1rem;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
-.next:active {
+#next:active {
   color: #fff;
 }
 
-.next::before {
+#next::before {
   content: 'next';
 }
 
-.upvote {
+#upvote {
   color: #ddffdd;
 }
 
-.upvote:hover {
+#upvote:hover {
   color: #99ff99;
 }
 
-.upvote:active {
+#upvote:active {
   color: #55ff55;
 }
 
-.upvote::before {
+#upvote::before {
   content: '+';
 }
 
