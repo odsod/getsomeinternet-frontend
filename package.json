@@ -4,21 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "jshint": "./node_modules/jshint/bin/jshint src",
+    "jscs": "./node_modules/jscs/bin/jscs --no-colors src",
+    "lint": "npm run jshint && npm run jscs",
+    "build-css": "lessc less/index.less public/bundle.css",
+    "build-js": "browserify src/index.js > public/bundle.js",
+    "watch-css": "catw -c 'lessc -' 'less/**/*.less' -o public/bundle.css -v",
+    "watch-js": "watchify src/**/*.js -o public/bundle.js -dv",
+    "watch": "npm run watch-css & npm run watch-js",
+    "build": "npm run lint && npm run build-css && npm run build-js"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^8.0.2",
-    "gulp": "^3.8.10",
-    "gulp-jscs": "^1.4.0",
-    "gulp-jshint": "^1.9.0",
-    "vinyl-source-stream": "^1.0.0"
+    "browserify": "^8.1.1",
+    "catw": "^0.2.0",
+    "jscs": "^1.10.0",
+    "jshint": "^2.5.11",
+    "watchify": "^2.2.1"
   },
   "dependencies": {
-    "knockout": "^3.2.0",
     "load-script": "0.0.5",
-    "q": "^1.1.2",
-    "superagent": "^0.21.0"
+    "q": "^1.1.2"
   }
 }
