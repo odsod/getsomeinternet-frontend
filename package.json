@@ -1,30 +1,33 @@
 {
   "name": "getsomeinternet-frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Get some internet!",
+  "author": "Oscar Söderlund",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "jshint": "./node_modules/jshint/bin/jshint src",
     "jscs": "./node_modules/jscs/bin/jscs --no-colors src",
     "lint": "npm run jshint && npm run jscs",
-    "build-css": "lessc less/index.less public/bundle.css",
-    "build-js": "browserify src/index.js > public/bundle.js",
-    "watch-css": "catw -c 'lessc -' 'less/**/*.less' -o public/bundle.css -v",
-    "watch-js": "watchify src/**/*.js -o public/bundle.js -dv",
-    "watch": "npm run watch-css & npm run watch-js",
-    "build": "npm run lint && npm run build-css && npm run build-js"
+    "less": "./node_modules/less/bin/lessc less/index.less public/bundle.css",
+    "watch-less": "./node_modules/watch/cli.js 'npm run less' less",
+    "browserify": "./node_modules/browserify/bin/cmd.js src/index.js > public/bundle.js",
+    "watchify": "./node_modules/watchify/bin/cmd.js src/index.js -o public/bundle.js",
+    "watch": "npm run watch-less & npm run watchify",
+    "build": "npm run lint && npm run less && npm run browserify"
   },
-  "author": "",
-  "license": "MIT",
   "devDependencies": {
     "browserify": "^8.1.1",
     "catw": "^0.2.0",
     "jscs": "^1.10.0",
     "jshint": "^2.5.11",
+    "less": "^2.2.0",
+    "load-script": "0.0.5",
+    "q": "^1.1.2",
+    "watch": "^0.13.0",
     "watchify": "^2.2.1"
   },
   "dependencies": {
-    "load-script": "0.0.5",
-    "q": "^1.1.2"
+    "normalize.css": "^3.0.2"
   }
 }

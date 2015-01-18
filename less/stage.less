@@ -1,0 +1,20 @@
+#stage {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+
+  .hidden {
+    /* display: none causes flash errors in FF */
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+  }
+}
+
+#image-container {
+  max-width: 80%;
+
+  img {
+    width: 100%;
+  }
+}
