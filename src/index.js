@@ -15,7 +15,15 @@ var showNextItemAndMaybeLoadMore = function() {
   }
 };
 
-ui.on('next', showNextItemAndMaybeLoadMore);
+var expPercentage = 0;
+
+ui.setExpPercentage(0);
+
+ui.on('next', function() {
+  expPercentage = (expPercentage + 5) % 100;
+  ui.setExpPercentage(expPercentage);
+});
+
 ui.on('upvote', showNextItemAndMaybeLoadMore);
 ui.on('downvote', showNextItemAndMaybeLoadMore);
 

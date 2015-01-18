@@ -1,0 +1,26 @@
+#exp-bar {
+  height: 5px;
+  width: 0;
+  transition: width 0.5s;
+  transition-timing-function: ease;
+  background: #f1c40f;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  &:after {
+    content: '';
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    transition: width 0.5s, height 0.5s, opacity 0.5s;
+    opacity: 1;
+    background: inherit;
+    transition-timing-function: cubic-bezier(0.25, 1, 1, 1);
+  }
+  &.animate:after {
+    width: 20px;
+    height: 20px;
+    transition: none;
+    opacity: 0.4;
+  }
+}

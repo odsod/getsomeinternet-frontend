@@ -3,9 +3,32 @@
 @import "header";
 @import "nav";
 @import "stage";
-@import "exp";
+@import "exp-bar";
 
 html {
   font-size: 17px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.25rem;
+  margin: 1.5rem 0;
+  small {
+    display: inline-block;
+    position: relative;
+    font-size: 0.7em;
+    &:before {
+      font-size: 0.7em;
+      content: 'SCORE';
+      display: block;
+    }
+  }
+}
+
+#title {
+  display: inline-block;
+  display: none;
+  margin-left: 1.5rem;
 }

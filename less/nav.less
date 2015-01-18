@@ -1,19 +1,66 @@
 nav {
   background: #0f0f0f;
   text-align: center;
-  padding: 20px 0;
+  padding: .5rem 0;
 }
 
-#next {
-  &::before {
-    content: 'next';
-  }
-  text-transform: uppercase;
+.vote-button() {
   color: #f0f0f0;
+  display: inline-block;
   text-decoration: none;
   font-size: 1.5rem;
-  letter-spacing: 0.25rem;
   font-weight: 300;
+  line-height: 3rem;
+  height: 3rem;
+  padding: 0 0.5rem;
+  transition: color 0.25s;
+}
+
+#downvote-button {
+  .vote-button;
+  padding-right: 1.0rem;
+  position: relative;
+  top: -0.15rem;
+  &::before {
+    content: '–';
+  }
+  &:hover {
+    color: lighten(#c0392b, 30%);
+  }
+  &:active {
+    color: #c0392b;
+  }
+}
+
+#next-button {
+  .vote-button;
+  letter-spacing: 0.25rem;
+  color: #f0f0f0;
+  &:hover {
+    color: darken(#f0f0f0, 20%);
+  }
+  &:active {
+    color: darken(#f0f0f0, 40%);
+  }
+  &::before {
+    content: 'NEXT';
+  }
+}
+
+#upvote-button {
+  .vote-button;
+  position: relative;
+  top: -0.15rem;
+  padding-right: 0.5rem;
+  &::before {
+    content: '+';
+  }
+  &:hover {
+    color: lighten(#27ae60, 30%);
+  }
+  &:active {
+    color: #27ae60;
+  }
 }
 
 /*nav {*/
