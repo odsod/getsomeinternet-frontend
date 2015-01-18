@@ -11,7 +11,7 @@ var create = function(domElement) {
       domElement.classList.remove('animate');
     }, 25);
   };
-  
+
   return {
     setExpPercentage: setExpPercentage
   };
