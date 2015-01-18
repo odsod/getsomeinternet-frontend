@@ -1,4 +1,4 @@
-var api = require('./api/backend-mock');
+var api = require('./api/backend');
 var ui = require('./ui');
 
 var queuedItems = [];
@@ -22,7 +22,7 @@ ui.setExpPercentage(0);
 // TODO(poscar): Write this code properly
 var hasUpgradedOnce = false;
 ui.on('next', function() {
-  expPercentage = (expPercentage + 20) % 100;
+  expPercentage = (expPercentage + 5) % 100;
   if (expPercentage === 0 && !hasUpgradedOnce) {
     ui.hideHeader().then(function() {
       ui.enableVoting();
