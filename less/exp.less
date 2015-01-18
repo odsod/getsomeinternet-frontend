@@ -1,0 +1,28 @@
+#exp {
+  height: 5px;
+  & > div {
+    height: 100%;
+    line-height: 100%;
+    width: 50%;
+    background: #f1c40f;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    &:after {
+      content: '';
+      border-radius: 50%;
+      width: 5px;
+      height: 5px;
+      transition: width 0.5s, height 0.5s, opacity 0.5s;
+      opacity: 1;
+      background: inherit;
+      transition-timing-function: cubic-bezier(0.25, 1, 1, 1);
+    }
+    &.animate:after {
+      width: 15px;
+      height: 15px;
+      transition: none;
+      opacity: 0.5;
+    }
+  }
+}
