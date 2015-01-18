@@ -19,13 +19,23 @@ var expPercentage = 0;
 
 ui.setExpPercentage(0);
 
+// TODO(poscar): Write this code properly
+var hasUpgradedOnce = false;
 ui.on('next', function() {
-  expPercentage = (expPercentage + 5) % 100;
+  expPercentage = (expPercentage + 20) % 100;
+  if (expPercentage === 0 && !hasUpgradedOnce) {
+    ui.hideHeader().then(function() {
+      ui.enableVoting();
+      hasUpgradedOnce = true;
+      ui.showHeader();
+    });
+  }
   ui.setExpPercentage(expPercentage);
+  showNextItemAndMaybeLoadMore();
 });
 
-ui.on('upvote', showNextItemAndMaybeLoadMore);
-ui.on('downvote', showNextItemAndMaybeLoadMore);
+//ui.on('upvote', showNextItemAndMaybeLoadMore);
+//ui.on('downvote', showNextItemAndMaybeLoadMore);
 
 // initialize
 api.loadMoreItems().then(function(items) {

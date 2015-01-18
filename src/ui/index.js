@@ -1,9 +1,17 @@
 var nav = require('./nav');
 var stage = require('./stage');
+var header = require('./header');
 var expBar = require('./exp-bar');
+
+var Q = require('q');
 
 var navController = nav.create({
   nextButton: document.getElementById('next-button')
+});
+
+var headerController = header.create({
+  title: document.getElementById('title'),
+  score: document.getElementById('score')
 });
 
 var expBarController = expBar.create(document.getElementById('exp-bar'));
@@ -15,7 +23,7 @@ var stageController = stage.create({
 });
 
 var showItem = function(item) {
-  //headerController.showItem(item);
+  headerController.showItem(item);
   stageController.showItem(item);
 };
 
@@ -38,7 +46,31 @@ window.addEventListener('keydown', function(e) {
   }
 });
 
+var hideHeader = function() {
+  var deferred = Q.defer();
+  document.getElementsByTagName('header')[0].classList.add('hidden');
+  setTimeout(function() {
+    deferred.resolve();
+  }, 250);
+  return deferred.promise;
+};
+
+var showHeader = function() {
+  document.getElementsByTagName('header')[0].classList.remove('hidden');
+};
+
+document.getElementById('upvote-button').classList.add('disabled');
+document.getElementById('downvote-button').classList.add('disabled');
+
+var enableVoting = function() {
+  document.getElementById('upvote-button').classList.remove('disabled');
+  document.getElementById('downvote-button').classList.remove('disabled');
+};
+
 exports.on = on;
+exports.enableVoting = enableVoting;
 exports.showItem = showItem;
+exports.hideHeader = hideHeader;
+exports.showHeader = showHeader;
 exports.preloadItem = stageController.preloadItem;
 exports.setExpPercentage = expBarController.setExpPercentage;
