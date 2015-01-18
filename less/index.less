@@ -27,6 +27,21 @@ h1 {
   }
 }
 
+body {
+  padding-top: 4.3rem;
+}
+
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: top 0.5s;
+  &.hidden {
+    top: -4.3rem;
+  }
+}
+
 #title {
   display: inline-block;
   display: none;
