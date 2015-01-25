@@ -1,4 +1,5 @@
 var Q = require('q');
+
 var futureSC = require('../../api/soundcloud');
 
 var PLACEHOLDER_SONG = 'http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538';
@@ -11,6 +12,7 @@ var createFutureWidget = function(iframeElement) {
     var widget = new SC.Widget(iframeElement);
     var deferred = Q.defer();
     widget.bind(SC.Widget.Events.READY, function() {
+      widget.pause();
       deferred.resolve(widget);
     });
     return deferred.promise;
@@ -31,7 +33,14 @@ var create = function(domElement) {
     futureWidget.then(function(widget) {
       widget.load('http://api.soundcloud.com/tracks/' + item.data, {
         show_artwork: true,
-        auto_play: true
+        auto_play: true,
+        callback: function() {
+          // Fix for when the user switches item before the player has loaded,
+          // and the player starts playing in the background
+          if (domElement.classList.contains('hidden')) {
+            widget.pause();
+          }
+        }
       });
     });
     domElement.classList.remove('hidden');
