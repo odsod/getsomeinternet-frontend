@@ -67,7 +67,12 @@ var enableVoting = function() {
   document.getElementById('downvote-button').classList.remove('disabled');
 };
 
+var scrollToTop = function() {
+  window.scrollTo(0, 0);
+};
+
 exports.on = on;
+exports.scrollToTop = scrollToTop;
 exports.enableVoting = enableVoting;
 exports.showItem = showItem;
 exports.hideHeader = hideHeader;

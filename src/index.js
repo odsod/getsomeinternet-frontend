@@ -22,6 +22,7 @@ ui.setExpPercentage(0);
 // TODO(poscar): Write this code properly
 var hasUpgradedOnce = false;
 ui.on('next', function() {
+  ui.scrollToTop();
   expPercentage = (expPercentage + 5) % 100;
   if (expPercentage === 0 && !hasUpgradedOnce) {
     ui.hideHeader().then(function() {
