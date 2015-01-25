@@ -15,6 +15,6 @@ Developing
 ----------
 
 ```
-$ npm run watch
-> npm run watch-less & npm run watchify
+$ npm run dev
+> npm run watch & npm run serve
 ```
