@@ -14,7 +14,9 @@
     "browserify": "./node_modules/browserify/bin/cmd.js src/index.js > public/bundle.js",
     "watchify": "./node_modules/watchify/bin/cmd.js src/index.js -o public/bundle.js",
     "watch": "npm run watch-less & npm run watchify",
-    "build": "npm run lint && npm run less && npm run browserify"
+    "build": "npm run lint && npm run less && npm run browserify",
+    "serve": "cd public && python -m SimpleHTTPServer 3001",
+    "dev": "npm run watch & npm run serve"
   },
   "devDependencies": {
     "browserify": "^8.1.1",
