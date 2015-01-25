@@ -1,4 +1,6 @@
-var create = function(domElement) {
+function create(opts) {
+  var domElement = opts.domElement;
+
   var animateTimeout = null;
 
   var setExpPercentage = function(percentage) {
@@ -13,6 +15,6 @@ var create = function(domElement) {
   return {
     setExpPercentage: setExpPercentage
   };
-};
+}
 
 exports.create = create;

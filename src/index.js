@@ -19,15 +19,17 @@ var expPercentage = 0;
 
 ui.setExpPercentage(0);
 
+var level = 1;
+ui.setLevel(level);
+
 // TODO(poscar): Write this code properly
-var hasUpgradedOnce = false;
 ui.on('next', function() {
   ui.scrollToTop();
   expPercentage = (expPercentage + 5) % 100;
-  if (expPercentage === 0 && !hasUpgradedOnce) {
+  if (expPercentage === 0) {
     ui.hideHeader().then(function() {
-      ui.enableVoting();
-      hasUpgradedOnce = true;
+      level += 1;
+      ui.setLevel(level);
       ui.showHeader();
     });
   }
