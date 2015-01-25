@@ -1,4 +1,4 @@
-var api = require('./api/backend');
+var api = require('./api/backend-mock');
 var ui = require('./ui');
 
 var queuedItems = [];
@@ -33,9 +33,6 @@ ui.on('next', function() {
   ui.setExpPercentage(expPercentage);
   showNextItemAndMaybeLoadMore();
 });
-
-//ui.on('upvote', showNextItemAndMaybeLoadMore);
-//ui.on('downvote', showNextItemAndMaybeLoadMore);
 
 // initialize
 api.loadMoreItems().then(function(items) {

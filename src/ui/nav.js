@@ -7,7 +7,10 @@ var create = function(domElements) {
     emitter.emit('next');
   };
 
-  domElements.nextButton.addEventListener('click', next);
+  domElements.nextButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    next();
+  });
 
   return {
     next: next,
