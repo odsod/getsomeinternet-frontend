@@ -13,8 +13,6 @@ exports.loadMoreItems = function() {
     uri = '/api/items';
   }
 
-  console.log('requesting', uri);
-
   ajax.get(uri).then(function(items) {
     if (!Array.isArray(items)) {
       var noArrayMsg = 'api did not return an array of items';
@@ -26,11 +24,8 @@ exports.loadMoreItems = function() {
       return deferredItems.resolve(new Error(emptyArrayMsg));
     }
 
-    console.log('got items from backend', items);
-
     var lastItem = items[items.length - 1];
     lastSort = lastItem._sort;
-    console.log('lastSort', lastSort);
     deferredItems.resolve(items);
   });
 

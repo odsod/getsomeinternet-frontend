@@ -29,7 +29,6 @@ var create = function(domElement) {
 
   var showItem = function(item) {
     futurePlayer.then(function(player) {
-      console.log('showItem', item);
       player.loadVideoById(item.data);
     });
     domElement.classList.remove('hidden');
@@ -37,7 +36,6 @@ var create = function(domElement) {
 
   var hideItem = function(item, nextItem) {
     futurePlayer.then(function(player) {
-      console.log('hideItem', item, 'nextItem', nextItem);
       if (nextItem.type !== 'youtube') {
         player.stopVideo();
       }
