@@ -1,4 +1,8 @@
+// Reset
 @import (inline) "../node_modules/normalize.css/normalize.css";
+
+// Cross-browser mixins
+@import (reference) "../node_modules/lesshat/build/lesshat.less";
 
 @import "nav";
 @import "stage";
@@ -35,7 +39,9 @@ header{
   top: 0;
   left: 0;
   width: 100%;
-  transition: top 0.25s;
+
+  .transition(top 0.25s);
+
   &.hidden {
     top: -4.3rem;
   }

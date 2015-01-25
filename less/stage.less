@@ -1,7 +1,10 @@
+@import (reference) "../node_modules/lesshat/build/lesshat.less";
+
 #stage {
   margin-top: 2rem;
-  display: flex;
-  justify-content: center;
+
+  .display(flex);
+  .justify-content(center);
 
   .hidden {
     /* display: none causes flash errors in FF */
